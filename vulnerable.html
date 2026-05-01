@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Stored XSS Lab - Vulnerable</title>
+</head>
 <body>
 
-<h2>Comments</h2>
+<h2>Stored XSS Lab - Vulnerable Version</h2>
 
-<input id="input">
-<button onclick="addComment()">Add</button>
+<input id="input" placeholder="Write a comment">
+<button onclick="addComment()">Add Comment</button>
 
+<h3>Comments:</h3>
 <div id="comments"></div>
 
 <script>
-
 let comments = [];
 
 function addComment() {
     let value = document.getElementById("input").value;
 
-    // Guardamos (simulando base de datos)
+    // Simulated storage/database
     comments.push(value);
 
     render();
+
+    document.getElementById("input").value = "";
 }
 
 function render() {
     let container = document.getElementById("comments");
 
+    // Clear the visible comment area before rendering again
     container.innerHTML = "";
 
+    // Vulnerable: renders stored user input as HTML
     for (let c of comments) {
         container.innerHTML += "<p>" + c + "</p>";
     }
 }
-
 </script>
- 
+
 </body>
 </html>

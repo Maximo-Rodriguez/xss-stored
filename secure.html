@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stored XSS Lab - Secure</title>
+</head>
+<body>
+
+<h2>Stored XSS Lab - Secure Version</h2>
+
+<input id="input" placeholder="Write a comment">
+<button onclick="addComment()">Add Comment</button>
+
+<h3>Comments:</h3>
+<div id="comments"></div>
+
+<script>
+let comments = [];
+
+function addComment() {
+    let value = document.getElementById("input").value;
+
+    // Simulated storage/database
+    comments.push(value);
+
+    render();
+
+    document.getElementById("input").value = "";
+}
+
+function render() {
+    let container = document.getElementById("comments");
+
+    // Clear the visible comment area before rendering again
+    container.innerHTML = "";
+
+    // Secure: render stored user input as plain text
+    for (let c of comments) {
+        let p = document.createElement("p");
+        p.textContent = c;
+        container.appendChild(p);
+    }
+}
+</script>
+
+</body>
+</html>
