@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Comments</h2>
+
+<input id="input">
+<button onclick="addComment()">Add</button>
+
+<div id="comments"></div>
+
+<script>
+
+let comments = [];
+
+function addComment() {
+    let value = document.getElementById("input").value;
+
+    // Guardamos (simulando base de datos)
+    comments.push(value);
+
+    render();
+}
+
+function render() {
+    let container = document.getElementById("comments");
+
+    container.innerHTML = "";
+
+    for (let c of comments) {
+        container.innerHTML += "<p>" + c + "</p>";
+    }
+}
+
+</script>
+ 
+</body>
+</html>
