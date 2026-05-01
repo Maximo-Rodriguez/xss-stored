@@ -16,4 +16,4 @@ Malicious code is executed for every user.
 Use textContent instead of innerHTML.
 
 ## Conclusion
-Never store and render user input without sanitization.
+Never store and render user input without sanitization.# xss-stored
